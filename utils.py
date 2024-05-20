@@ -1,5 +1,6 @@
 from game.gamerules import Board
 from classes.state import State
+import numpy as np
 
 def play_game(p1, p2, plot_each_move=False):
     board = Board()
@@ -60,3 +61,9 @@ def test_games(p1, p2, game_count):
     print(f"p1_wins: {p1_wins}: ({p1_as_first}; {p1_as_second})")
     print(f"p2_wins: {p2_wins}: ({p2_as_first}; {p2_as_second})")
     print(f"draws: {draws}")
+
+def encode_state(state):
+    ones = state == 1
+    zeros = state == 0
+    neg = state == -1
+    return np.stack([ones, zeros, neg], axis=2)
